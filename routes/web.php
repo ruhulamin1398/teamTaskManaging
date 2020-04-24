@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
 
+
+Route::get("/", "UserController@index")->name('index');
+    Route::resource('status','StatusController');
+    Route::resource('level','LevelController');
+    Route::resource('task','taskController');
