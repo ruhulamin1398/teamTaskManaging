@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\task;
+use App\TaskLevel;
+use App\TaskStatus;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -14,8 +16,10 @@ class TaskController extends Controller
      */
     public function index()
     {
+        $taskLevels = TaskLevel::all();
+        $taskStatuses = TaskStatus::all();
         $tasks = task::all();
-        return view('task.t_create',compact('tasks'));
+        return view('task.index', compact('tasks', 'taskLevels','taskStatuses'));
     }
 
     /**
@@ -37,9 +41,10 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $task = new task;
+
         $task->assigned = $request->assigned;
-        $task->level = $request->level;
-        $task->status = $request->status;
+        $task->task_level_id = $request->task_level_id;
+        $task->task_status_id = $request->task_status_id;
         $task->link = $request->link;
         $task->comment = $request->comment;
         $task->save();
@@ -54,7 +59,7 @@ class TaskController extends Controller
      */
     public function show(task $task)
     {
-        
+        //
     }
 
     /**
@@ -78,8 +83,8 @@ class TaskController extends Controller
     public function update(Request $request, task $task)
     {
         $task->assigned = $request->assigned;
-        $task->level = $request->level;
-        $task->status = $request->status;
+        $task->task_level_id = $request->task_level_id;
+        $task->task_status_id = $request->task_status_id;
         $task->link = $request->link;
         $task->comment = $request->comment;
         $task->save();
@@ -95,6 +100,6 @@ class TaskController extends Controller
     public function destroy(task $task)
     {
         $task->delete();
-        return back();
+        return  back();
     }
 }
