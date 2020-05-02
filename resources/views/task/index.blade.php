@@ -18,10 +18,15 @@
             <form method="POST" action="{{ route('tasks.store') }}">
                 @csrf
                 <div class="form-row align-items-center">
-                  <div class="col-auto">
-                      <span class="text-dark pl-2"> Assigned</span>
-                      <input type="text" name="assigned" class="form-control mb-2" id="inlineFormInput" required >
-                  </div>
+                  <div class="form-group">
+                        <label for="user_id"> Assigned</label>
+                        <select class="form-control mb-2" name="user_id" id="AddTaskUserId" required>
+                            <option value="1" selected="selected"> Select id</option>
+                            @foreach ($users as $user)
+                            <option value="{{$user->id}}"> {{$user->id}} | {{$user->name}} </option>
+                            @endforeach
+                        </select>
+                    </div>
 
                     <div class="form-group">
                         <label for="level_id">Level</label>
@@ -94,7 +99,7 @@
                         <?php $id = $task->id; ?>
                         <tr class="data-row">
                             <td class="iteration">{{$i++}}</td>
-                            <td class="  word-break assigned">{{$task->assigned}}</td>
+                            <td class="  word-break name">{{$task->user->name}}</td>
                             <td class="  word-break taskLevel">{{$task->level->name}}</td>
                             <td class="  word-break taskStatus">{{$task->status->name}}</td>
                             <td class=" word-break link">{{$task->link}}</td>
@@ -168,8 +173,8 @@
                     <!-- /id -->
                     <!-- name -->
                     <div class="form-group">
-                        <label class="col-form-label" for="task-modal-input-assigned">Assigned ID</label>
-                        <input type="text" name="assigned" class="form-control" id="task-modal-input-assigned" required autofocus>
+                        <label class="col-form-label" for="task-modal-input-name">Assigned</label>
+                        <input type="text" name="name" class="form-control" id="task-modal-input-name" required autofocus>
                     </div>
                     <div class="form-group">
                         <label for="level_id"> Level</label>
@@ -211,6 +216,7 @@
 <script>
       $(document).ready(function(){
 
+        
 
 $(document).on('click', "#task-edit-item", function() {
 
@@ -231,7 +237,7 @@ $(document).on('click', "#task-edit-item", function() {
 
     // get the data
     var id = el.data('item-id');
-    var assigned = row.children(".assigned").text();
+    var name = row.children(".name").text();
       var comment = row.children(".comment").text();
       var link = row.children(".link").text();
       var taskLevelName = row.children(".taskLevel").text();
@@ -243,7 +249,7 @@ $(document).on('click', "#task-edit-item", function() {
 
     // fill the data in the input fields
     $("#task-modal-input-id").val(id);
-    $("#task-modal-input-assigned").val(assigned);
+    $("#task-modal-input-name").val(name);
     $("#task-modal-input-link").val(link);
     $("#task-modal-input-comment").val(comment);
 

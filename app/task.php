@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class task extends Model
 {
+    public function user()
+    {
+        return $this->belongsTo("App\User");
+    }
     public function status()
     {
         return $this->belongsTo('App\TaskStatus','task_status_id','id');
