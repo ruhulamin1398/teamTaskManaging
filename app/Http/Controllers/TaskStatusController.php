@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\status;
+use App\TaskStatus;
 use Illuminate\Http\Request;
 
-class StatusController extends Controller
+class TaskStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,17 @@ class StatusController extends Controller
      */
     public function index()
     {
-        $statuses = status::all();
-        return view('status.create',compact('statuses'));
-    }
+        $statuses = TaskStatus::all();
 
+        return view('task.status',compact('statuses'));
+    }
+    public function taskStatusListApi()
+    {
+        $taskStatuses = TaskStatus::all();
+
+        return $taskStatuses;
+
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -36,20 +43,20 @@ class StatusController extends Controller
      */
     public function store(Request $request)
     {
-        $status = new status;
-        $status->name = $request->name;
-        $status->description = $request->description;
-        $status->save();
+        $taskStatus = new TaskStatus;
+        $taskStatus->name= $request->name;
+        $taskStatus->description = $request->description;
+        $taskStatus->save();
         return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\status  $status
+     * @param  \App\TaskStatus  $taskStatus
      * @return \Illuminate\Http\Response
      */
-    public function show(status $status)
+    public function show(TaskStatus $taskStatus)
     {
         //
     }
@@ -57,10 +64,10 @@ class StatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\status  $status
+     * @param  \App\TaskStatus  $taskStatus
      * @return \Illuminate\Http\Response
      */
-    public function edit(status $status)
+    public function edit(TaskStatus $taskStatus)
     {
         //
     }
@@ -69,26 +76,26 @@ class StatusController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\status  $status
+     * @param  \App\TaskStatus  $taskStatus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, status $status)
+    public function update(Request $request, TaskStatus $taskStatus)
     {
-        $status->name= $request->name;
-        $status->description = $request->description;
-        $status->save();
-        return back();
+        $taskStatus->name= $request->name;
+        $taskStatus->description = $request->description;
+        $taskStatus->save();
+         return back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\status  $status
+     * @param  \App\TaskStatus  $taskStatus
      * @return \Illuminate\Http\Response
      */
-    public function destroy(status $status)
+    public function destroy(TaskStatus $taskStatus)
     {
-        $status->delete();
-        return back();
+        $taskStatus->delete();
+         return back();
     }
 }

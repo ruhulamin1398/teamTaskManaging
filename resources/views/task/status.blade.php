@@ -18,7 +18,7 @@
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('status.store') }}">
+                <form method="POST" action="{{ route('task-statuses.store') }}">
                     @csrf
                     <div class="form-row align-items-center">
                         <div class="col-auto">
@@ -62,6 +62,7 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Description</th>
+                            <th>Task</th>
                             <th>Action</th>
 
                         </tr>
@@ -76,14 +77,14 @@
                                 <td class="  word-break name">{{$status->name}}</td>
                                 <td class=" word-break description ">{{$status->description}}</td>
 
-
+                                <td>{{$status->tasks->count()}}</td>
 
 
                                 <td class="align-middle">
                                     <button type="button" class="btn btn-success" id="status-edit-item" data-item-id={{$id}}> <i class="fa fa-edit" aria-hidden="false"> </i></button>
 
 
-                                    <form method="POST" action="{{ route('status.destroy',  $status->id )}} " id="delete-form-{{ $status->id }}" style="display:none; ">
+                                    <form method="POST" action="{{ route('task-statuses.destroy',  $status->id )}} " id="delete-form-{{ $status->id }}" style="display:none; ">
                                         {{csrf_field() }}
                                         {{ method_field("delete") }}
                                     </form>
@@ -178,7 +179,7 @@ $(document).on('click', "#status-edit-item", function() {
     var description = row.children(".description").text();
 
 
-    var action= $("#indexLink").val()+'/status/'+id;
+    var action= $("#indexLink").val()+'/task-statuses/'+id;
     $("#status-edit-form").attr('action',action);
 
     // fill the data in the input fields

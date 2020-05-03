@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\level;
+use App\TaskLevel;
 use Illuminate\Http\Request;
 
-class LevelController extends Controller
+class TaskLevelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,15 @@ class LevelController extends Controller
      */
     public function index()
     {
-        $levels = level::all();
-        return view('level.l_create',compact('levels'));
+        $levels = TaskLevel::all();
+       return view('task.level',compact('levels'));
+    }
+    public function taskLevelListApi()
+    {
+        $taskLevels = TaskLevel::all();
+
+        return $taskLevels;
+
     }
 
     /**
@@ -36,20 +43,20 @@ class LevelController extends Controller
      */
     public function store(Request $request)
     {
-        $level = new level;
-        $level->name = $request->name;
-        $level->description = $request->description;
-        $level->save();
-        return back();
+        $taskLevel = new TaskLevel;
+      $taskLevel->name= $request->name;
+      $taskLevel->description = $request->description;
+      $taskLevel->save();
+      return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\level  $level
+     * @param  \App\TaskLevel  $taskLevel
      * @return \Illuminate\Http\Response
      */
-    public function show(level $level)
+    public function show(TaskLevel $taskLevel)
     {
         //
     }
@@ -57,10 +64,10 @@ class LevelController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\level  $level
+     * @param  \App\TaskLevel  $taskLevel
      * @return \Illuminate\Http\Response
      */
-    public function edit(level $level)
+    public function edit(TaskLevel $taskLevel)
     {
         //
     }
@@ -69,26 +76,26 @@ class LevelController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\level  $level
+     * @param  \App\TaskLevel  $taskLevel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, level $level)
+    public function update(Request $request, TaskLevel $taskLevel)
     {
-        $level->name= $request->name;
-        $level->description = $request->description;
-        $level->save();
-        return back();
+        $taskLevel->name= $request->name;
+      $taskLevel->description = $request->description;
+      $taskLevel->save();
+      return back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\level  $level
+     * @param  \App\TaskLevel  $taskLevel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(level $level)
+    public function destroy(TaskLevel $taskLevel)
     {
-        $level->delete();
-        return back();
+        $taskLevel->delete();
+      return back();
     }
 }

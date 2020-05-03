@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Console\Presets\React;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get("/", "UserController@index")->name('index');
-    Route::resource('status','StatusController');
-    Route::resource('level','LevelController');
-    Route::resource('task','taskController');
+Route::resource('tasks','TaskController');
+Route::resource('task-statuses','TaskStatusController');
+Route::resource('task-levels','TaskLevelController');
+Route::get('task-status-list-api', 'TaskStatusController@taskStatusListApi')->name('task_status_list_api');
+Route::get('task-level-list-api', 'TaskLevelController@taskLevelListApi')->name('task_level_list_api');
+

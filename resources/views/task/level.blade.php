@@ -18,7 +18,7 @@
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('level.store') }}">
+                <form method="POST" action="{{ route('task-levels.store') }}">
                     @csrf
                     <div class="form-row align-items-center">
                         <div class="col-auto">
@@ -62,6 +62,7 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Description</th>
+                            <th>Task</th>
                             <th>Action</th>
 
                         </tr>
@@ -76,14 +77,14 @@
                                 <td class="  word-break name">{{$level->name}}</td>
                                 <td class=" word-break description ">{{$level->description}}</td>
 
-
+                                <td>{{$level->tasks->count()}}</td>
 
 
                                 <td class="align-middle">
                                     <button type="button" class="btn btn-success" id="level-edit-item" data-item-id={{$id}}> <i class="fa fa-edit" aria-hidden="false"> </i></button>
 
 
-                                    <form method="POST" action="{{ route('level.destroy',  $level->id )}} " id="delete-form-{{ $level->id }}" style="display:none; ">
+                                    <form method="POST" action="{{ route('task-levels.destroy',  $level->id )}} " id="delete-form-{{ $level->id }}" style="display:none; ">
                                         {{csrf_field() }}
                                         {{ method_field("delete") }}
                                     </form>
@@ -178,7 +179,7 @@ $(document).on('click', "#level-edit-item", function() {
     var description = row.children(".description").text();
 
 
-    var action= $("#indexLink").val()+'/level/'+id;
+    var action= $("#indexLink").val()+'/task-levels/'+id;
     $("#level-edit-form").attr('action',action);
 
     // fill the data in the input fields
