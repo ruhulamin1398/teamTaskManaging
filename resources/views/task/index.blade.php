@@ -1,16 +1,21 @@
 @extends('layout.app')
 @section('content')
 
+@if( Auth::user()->isAdmin() )
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <div class="card mb-4 shadow">
 
 
- 
+        <div class="card-header py-3 bg-abasas-dark">
+            <nav class="navbar navbar-dark ">
+                <a class="navbar-brand"> New Task</a>
 
-        @if( Auth::user()->isAdmin() )
+            </nav>
+        </div>
 
+   
         <div class="card-body">
             <form method="POST" action="{{ route('tasks.store') }}">
                 @csrf
@@ -65,10 +70,10 @@
             </form>
         </div>
 
-        @endif
+      
     </div>
 
-
+    @endif
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">

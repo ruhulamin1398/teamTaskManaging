@@ -23,17 +23,29 @@
 
                 
             @if(!Auth::guest())
+            <ul class="navbar-nav ">
 
 <div class="topbar-divider d-none d-sm-block"></div>
 <!-- Nav Item - User Information -->
 <li class="nav-item dropdown no-arrow">
   <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <span class="mr-2 d-none d-lg-inline  small text-light">{{Auth::user()->name}}</span>
+    <span class="mr-2 d-none d-lg-inline  small text-dark">{{Auth::user()->name}}</span>
     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
   </a>
   <!-- Dropdown - User Information -->
   <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in   bg-abasas-dark " aria-labelledby="userDropdown">
-    
+    <!-- <a class="dropdown-item" href="#">
+          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+          Profile
+        </a>
+        <a class="dropdown-item" href="#">
+          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+          Settings
+        </a>
+        <a class="dropdown-item" href="#">
+          <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+          Activity Log
+        </a> -->
     <a class="dropdown-item    bg-abasas-dark " href="{{ route('logout') }}" onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
       {{ __('Logout') }}
@@ -54,8 +66,9 @@
 <li class="nav-item">
   <a href="{{ route('register') }}" class="nav-link">Register</a>
 </li>
-
+            </ul>
 @endif
+
             </nav>
 
 
@@ -79,6 +92,8 @@
            <a class="btn btn-primary" href="login.html">Logout</a>
         </div>
       </div>
+    </div>
+  </div>
       
   @yield('content')
 
