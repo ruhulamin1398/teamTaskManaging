@@ -17,7 +17,7 @@ class isAdmin
     public function handle($request, Closure $next)
     {
         if (!Auth::user()->isAdmin()) {
-            return redirect('notPermitted');
+            return redirect(route('tasks.index'));
         }
         return $next($request);
 

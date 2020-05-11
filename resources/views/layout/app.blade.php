@@ -19,7 +19,66 @@
             <nav class="navbar justify-content-center  sticky-top ">
                 <a class="navbar-brand" href="https://abasas.tech" > <img   src="{{asset('Abasas.com logo.png')}}" alt="abasas.tech" style="height:80px;"> </a>
 
+
+
+                
+            @if(!Auth::guest())
+
+<div class="topbar-divider d-none d-sm-block"></div>
+<!-- Nav Item - User Information -->
+<li class="nav-item dropdown no-arrow">
+  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="mr-2 d-none d-lg-inline  small text-light">{{Auth::user()->name}}</span>
+    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+  </a>
+  <!-- Dropdown - User Information -->
+  <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in   bg-abasas-dark " aria-labelledby="userDropdown">
+    
+    <a class="dropdown-item    bg-abasas-dark " href="{{ route('logout') }}" onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+      {{ __('Logout') }}
+    </a>
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+      @csrf
+    </form>
+  </div>
+</li>
+@else
+<li class="nav-item">
+  <a href="{{ route('login') }}" class="nav-link">login</a>
+</li>
+
+<div class="topbar-divider d-none d-sm-block"></div>
+
+<li class="nav-item">
+  <a href="{{ route('register') }}" class="nav-link">Register</a>
+</li>
+
+@endif
             </nav>
+
+
+
+
+
+
+
+            
+        <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+         <div class="modal-footer">
+           <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
       
   @yield('content')
 
