@@ -53,6 +53,7 @@ class TaskController extends Controller
         $task->task_level_id = $request->task_level_id;
         $task->task_status_id = $request->task_status_id;
         $task->link = $request->link;
+        $task->title = $request->title;
         $task->comment = $request->comment;
 
         $user = User::find($request->user_id);

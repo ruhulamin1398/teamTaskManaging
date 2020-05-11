@@ -16,7 +16,7 @@ class CreateTaskLevelsTable extends Migration
         Schema::create('task_levels', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
