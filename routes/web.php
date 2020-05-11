@@ -18,8 +18,8 @@ use Illuminate\Http\Request;
 
 Route::get("/", "UserController@index")->name('index');
 Route::resource('tasks','TaskController')->middleware('auth');
-Route::resource('task-statuses','TaskStatusController');
-Route::resource('task-levels','TaskLevelController');
+Route::resource('task-statuses','TaskStatusController')->middleware('isAdmin');
+Route::resource('task-levels','TaskLevelController')->middleware('isAdmin');
 Route::get('task-status-list-api', 'TaskStatusController@taskStatusListApi')->name('task_status_list_api');
 Route::get('task-level-list-api', 'TaskLevelController@taskLevelListApi')->name('task_level_list_api');
 

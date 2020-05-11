@@ -7,12 +7,9 @@
     <div class="card mb-4 shadow">
 
 
-        <div class="card-header py-3 bg-abasas-dark">
-            <nav class="navbar navbar-dark ">
-                <a class="navbar-brand"> New Task</a>
+ 
 
-            </nav>
-        </div>
+        @if( Auth::user()->isAdmin() )
 
         <div class="card-body">
             <form method="POST" action="{{ route('tasks.store') }}">
@@ -67,6 +64,8 @@
 
             </form>
         </div>
+
+        @endif
     </div>
 
 
@@ -89,25 +88,31 @@
                     <thead class="bg-abasas-dark">
 
 
-                    <tr>
+                        <tr>
                             <th>#</th>
                             <th>Assigned</th>
                             <th>Level</th>
                             <th>Status</th>
                             <th>title</th>
                             <th>Comment</th>
+
+                            @if( Auth::user()->isAdmin() )
                             <th>Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tfoot class="bg-abasas-dark">
-                    <tr>
+                        <tr>
                             <th>#</th>
                             <th>Assigned</th>
                             <th>Level</th>
                             <th>Status</th>
                             <th>title</th>
                             <th>Comment</th>
+
+                            @if( Auth::user()->isAdmin() )
                             <th>Action</th>
+                            @endif
                         </tr>
 
                     </tfoot>
@@ -127,6 +132,7 @@
 
 
 
+                            @if( Auth::user()->isAdmin() )
                             <td class="align-middle">
                                 <button type="button" class="btn btn-success" id="task-edit-item" data-item-id={{$id}}> <i class="fa fa-edit" aria-hidden="false"> </i></button>
 
@@ -154,6 +160,7 @@
 
 
                             </td>
+                            @endif
 
                         </tr>
                         @endforeach

@@ -15,6 +15,12 @@
   
   </head>
   <body>
+
+            <nav class="navbar justify-content-center  sticky-top ">
+                <a class="navbar-brand" href="https://abasas.tech" > <img   src="{{asset('Abasas.com logo.png')}}" alt="abasas.tech" style="height:80px;"> </a>
+
+            </nav>
+      
   @yield('content')
 
   <input type="text"  id="indexLink" value="{{route('index')}}" hidden >
